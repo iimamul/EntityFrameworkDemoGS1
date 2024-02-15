@@ -15,7 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     //options.UseSqlServer("name:DefaultConnection")
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
+//automapper
+builder.Services.AddAutoMapper(typeof(Program));
 
 
 var app = builder.Build();
