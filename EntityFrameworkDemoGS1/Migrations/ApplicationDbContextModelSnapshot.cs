@@ -44,7 +44,7 @@ namespace EntityFrameworkDemoGS1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Actors");
+                    b.ToTable("Actors", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkDemoGS1.Entities.Comment", b =>
@@ -69,7 +69,7 @@ namespace EntityFrameworkDemoGS1.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkDemoGS1.Entities.Genre", b =>
@@ -87,7 +87,7 @@ namespace EntityFrameworkDemoGS1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkDemoGS1.Entities.Movie", b =>
@@ -111,7 +111,7 @@ namespace EntityFrameworkDemoGS1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies");
+                    b.ToTable("Movies", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkDemoGS1.Entities.MovieActor", b =>
@@ -134,7 +134,7 @@ namespace EntityFrameworkDemoGS1.Migrations
 
                     b.HasIndex("ActorId");
 
-                    b.ToTable("MovieActors");
+                    b.ToTable("MovieActors", (string)null);
                 });
 
             modelBuilder.Entity("GenreMovie", b =>
@@ -149,7 +149,7 @@ namespace EntityFrameworkDemoGS1.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("GenreMovie");
+                    b.ToTable("GenreMovie", (string)null);
                 });
 
             modelBuilder.Entity("EntityFrameworkDemoGS1.Entities.Comment", b =>
