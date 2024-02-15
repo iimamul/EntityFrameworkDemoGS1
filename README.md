@@ -149,4 +149,4 @@ builder.Services.AddControllers()
         return NoContent();
     }
 ```
-(link)[https://www.youtube.com/watch?v=7oMdDe4TIqY&t=5638s]
+[link](https://www.youtube.com/watch?v=7oMdDe4TIqY&t=5638s)
