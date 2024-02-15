@@ -43,4 +43,62 @@ public class MoviesController : ControllerBase
         return Ok();
     }
 
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<Movie>> Get(int id)
+    {
+        var movie = await context
+            .Movies
+            .Include(m => m.Comments)
+            .Include(n => n.Genres.OrderByDescending(g => g.Id))
+            .Include(p => p.MovieActors)
+                .ThenInclude(pp => pp.Actor)
+            .FirstOrDefaultAsync(a => a.Id == id);
+
+        if (movie is null)
+        {
+            return NotFound();
+        }
+        return movie;
+    }
+
+    [HttpGet("selectloading/{id:int}")]
+    public async Task<ActionResult> GetSelect(int id)
+    {
+        //we can replace this belows anonymous type objects with a DTO
+        var movie = await context
+            .Movies
+            .Select(mov => new
+            {
+                Id = mov.Id,
+                Title = mov.Title,
+                Genre = mov.Genres.Select(g => g.Name).ToList(),
+                Actors = mov.MovieActors.OrderByDescending(ma => ma.ActorId).Select(ma => new
+                {
+                    Name = ma.Actor.Name,
+                    Id = ma.ActorId,
+                    Character = ma.Character
+                }),
+                CommentsQuantity = mov.Comments.Count()
+            })
+            .FirstOrDefaultAsync(a => a.Id == id);
+
+        if (movie is null)
+        {
+            return NotFound();
+        }
+        return Ok(movie);
+    }
+
+    [HttpDelete("{id:int}/newway")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        var deletedRows = await context.Movies.Where(g => g.Id == id).ExecuteDeleteAsync();
+        if (deletedRows == 0)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+
 }

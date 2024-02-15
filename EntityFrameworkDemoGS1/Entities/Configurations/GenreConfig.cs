@@ -13,5 +13,7 @@ public class GenreConfig : IEntityTypeConfiguration<Genre>
         var animation = new Genre { Id = 7, Name = "Animation" };
 
         builder.HasData(scienceFiction, animation);
+
+        builder.HasIndex(b => b.Name).IsUnique();
     }
 }
